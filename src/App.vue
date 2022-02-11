@@ -93,9 +93,10 @@ export default {
     length() {
       let idArr=[]
       this.comments.forEach(element => {
-        this.idArr.push(element.id)
+        idArr.push(element.id)
       });
-      let newId = Math.max.apply(idArr)
+      console.log(idArr)
+      let newId = Math.max.apply(null, idArr)
       return newId+1
     },
     hideInfo() {
