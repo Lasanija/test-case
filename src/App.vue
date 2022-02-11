@@ -91,7 +91,12 @@ export default {
       // });
     },
     length() {
-      return this.comments.length + 1;
+      let idArr=[]
+      this.comments.forEach(element => {
+        this.idArr.push(element.id)
+      });
+      let newId = Math.max.apply(idArr)
+      return newId+1
     },
     hideInfo() {
       return (this.showInfo = false);
