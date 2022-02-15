@@ -67,7 +67,7 @@ export default {
   mounted() {
     this.axios
       .get("https://jsonplaceholder.typicode.com/comments")
-      .then((response) => (this.comments = response.data.slice(0, 20)))
+      .then((response) => (this.comments = response.data.splice(0,20)))
       .catch((error) => console.log(error));
   },
   methods: {
@@ -90,15 +90,26 @@ export default {
       //   console.log(error);
       // });
     },
-    length() {
-      let idArr=[]
+    //Подходит для определение Id нового елемента при небольшом количестве данных. Вызывает елементы массива как параметры.
+    // length() {
+    //   let idArr=[]
+    //   this.comments.forEach(element => {
+    //     idArr.push(element.id)
+    //   });
+    //   let newId = Math.max(... idArr)
+    //   return newId+1
+    // },
+    length(){
+let idArr=[]
       this.comments.forEach(element => {
-        idArr.push(element.id)
-      });
-      console.log(idArr)
-      let newId = Math.max.apply(null, idArr)
-      return newId+1
+       idArr.push(element.id)
+       });
+       return idArr.reduce((a, b) =>{
+         return Math.max(a,b)+1
+       })
+       
     },
+
     hideInfo() {
       return (this.showInfo = false);
     },
